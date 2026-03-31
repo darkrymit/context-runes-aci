@@ -36,6 +36,7 @@ function main(raw) {
     const result = spawnSync('crunes', ['query', key, ...args, '--format', 'json'], {
       encoding: 'utf8',
       cwd: process.cwd(),
+      shell: true,
     });
 
     if (result.error || result.status !== 0) {
