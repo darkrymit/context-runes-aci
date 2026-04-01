@@ -1,18 +1,17 @@
 ---
-name: Context Runes Create
-description: Use this skill when the user wants to add a new enricher to their project (e.g., "create a context rune for docs", "add a new enricher", "scaffold an enricher for the API").
-version: 1.0.0
+name: context-runes-create
+description: Use this skill when the user wants to add a new rune to their project (e.g., "create a context rune for docs", "add a new rune", "scaffold a rune for the API").
 ---
 
 # Context Runes Create
 
-To scaffold a new enricher and register it in one step:
+To scaffold a new rune and register it in one step:
 
 ```bash
 crunes create <key> --format markdown   # or --format tree
 ```
 
-This creates `.context-runes/enrichers/<key>.js` and registers it in `.context-runes/config.json`.
+This creates `.context-runes/runes/<key>.js` and registers it in `.context-runes/config.json`.
 
 Optionally, attach human-readable metadata so it appears in `crunes list`:
 
@@ -38,13 +37,13 @@ crunes -y -p create docs --format markdown
 
 ## Config Entry Format
 
-The enricher is registered in `.context-runes/config.json`. A plain path string is valid, but an object allows metadata:
+The rune is registered in `.context-runes/config.json`. A plain path string is valid, but an object allows metadata:
 
 ```json
 {
-  "enrichers": {
+  "runes": {
     "api": {
-      "path": ".context-runes/enrichers/api.js",
+      "path": ".context-runes/runes/api.js",
       "name": "API Overview",
       "description": "Summarises public API endpoints and their signatures"
     }
@@ -54,7 +53,7 @@ The enricher is registered in `.context-runes/config.json`. A plain path string 
 
 You can add or edit `name` and `description` directly in the config file at any time — no re-scaffolding needed.
 
-## Enricher API
+## Rune API
 
 The generated file uses this signature:
 

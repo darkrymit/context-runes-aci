@@ -1,31 +1,30 @@
 ---
-name: Context Runes List
-description: Use this skill when the user asks what context-runes enrichers are available in the current project (e.g., "what runes do I have?", "list available enrichers", "what context is defined?").
-version: 1.0.0
+name: context-runes-list
+description: Use this skill when the user asks what context-runes runes are available in the current project (e.g., "what runes do I have?", "list available runes", "what context is defined?").
 ---
 
 # Context Runes List
 
-To discover all enrichers registered in the current project:
+To discover all runes registered in the current project:
 
 ```bash
 crunes list
 ```
 
-This reads `.context-runes/config.json` and prints all registered enricher keys with their name, description, and file path.
+This reads `.context-runes/config.json` and prints all registered rune keys with their name, description, and file path.
 
 If the project has no config yet, run `crunes init` to create one.
 
 ## Config Format
 
-Each enricher entry can be a plain path string or an object with optional metadata:
+Each rune entry can be a plain path string or an object with optional metadata:
 
 ```json
 {
-  "enrichers": {
-    "docs": ".context-runes/enrichers/docs.js",
+  "runes": {
+    "docs": ".context-runes/runes/docs.js",
     "api": {
-      "path": ".context-runes/enrichers/api.js",
+      "path": ".context-runes/runes/api.js",
       "name": "API Overview",
       "description": "Summarises public API endpoints and their signatures"
     }
@@ -33,17 +32,7 @@ Each enricher entry can be a plain path string or an object with optional metada
 }
 ```
 
-`name` and `description` are shown as columns in `crunes list` and help users and AI agents understand what each enricher provides without running it.
-
-## JSON Output
-
-Use `--format json` to get a machine-readable array:
-
-```bash
-crunes list --format json
-```
-
-Each entry has the shape `{ key, path, name, description }` (name and description are `null` when not set).
+`name` and `description` are shown as columns in `crunes list` and help users and AI agents understand what each rune provides without running it.
 
 ## Plain Output
 

@@ -41,7 +41,7 @@ function main(raw) {
 
     if (result.error || result.status !== 0) {
       process.stderr.write(
-        `[context-runes] Enricher "${key}" failed: ${result.stderr || (result.error && result.error.message) || 'unknown error'}\n`
+        `[context-runes] Rune "${key}" failed: ${result.stderr || (result.error && result.error.message) || 'unknown error'}\n`
       );
       continue;
     }
@@ -50,12 +50,12 @@ function main(raw) {
     try {
       sections = JSON.parse(result.stdout);
     } catch (err) {
-      process.stderr.write(`[context-runes] Enricher "${key}" returned invalid JSON: ${err.message}\n`);
+      process.stderr.write(`[context-runes] Rune "${key}" returned invalid JSON: ${err.message}\n`);
       continue;
     }
 
     if (!Array.isArray(sections)) {
-      process.stderr.write(`[context-runes] Enricher "${key}" returned unexpected JSON shape\n`);
+      process.stderr.write(`[context-runes] Rune "${key}" returned unexpected JSON shape\n`);
       continue;
     }
 
