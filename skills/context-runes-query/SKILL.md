@@ -1,6 +1,6 @@
 ---
 name: Context Runes Query
-description: Use this skill when the user explicitly asks to fetch or inspect the output of a specific context-runes enricher mid-conversation (e.g., "query the docs enricher", "fetch context for api"). If you are Claude Code: do NOT trigger this skill just because a prompt contains $key(args) tokens — those are resolved automatically by the UserPromptSubmit hook before reaching the LLM.
+description: Do NOT use when a prompt contains $key(args) tokens (e.g., $m(chat)) — in Claude Code those are already resolved by the UserPromptSubmit hook and injected as context before the message arrives. Use ONLY when the user explicitly says to query or fetch an enricher/rune directly (e.g., "query the docs enricher", "run crunes", "fetch enricher output") or when you want to inspect enricher/rune output mid-conversation.
 version: 1.0.0
 ---
 
