@@ -14,6 +14,46 @@ crunes create <key> --format markdown   # or --format tree
 
 This creates `.context-runes/enrichers/<key>.js` and registers it in `.context-runes/config.json`.
 
+Optionally, attach human-readable metadata so it appears in `crunes list`:
+
+```bash
+crunes create <key> --format markdown \
+  --name "API Overview" \
+  --description "Summarises public API endpoints and their signatures"
+```
+
+In interactive mode (`crunes create` without flags), name and description are prompted as optional fields.
+
+To skip all prompts (e.g. from a script or AI agent), pass `--yes` / `-y` — all required fields must then be provided as flags, and optional ones are simply omitted:
+
+```bash
+crunes -y create docs --format markdown --name "Docs" --description "Project documentation overview"
+```
+
+Add `--plain` / `-p` to suppress ANSI colors in the success/error output:
+
+```bash
+crunes -y -p create docs --format markdown
+```
+
+## Config Entry Format
+
+The enricher is registered in `.context-runes/config.json`. A plain path string is valid, but an object allows metadata:
+
+```json
+{
+  "enrichers": {
+    "api": {
+      "path": ".context-runes/enrichers/api.js",
+      "name": "API Overview",
+      "description": "Summarises public API endpoints and their signatures"
+    }
+  }
+}
+```
+
+You can add or edit `name` and `description` directly in the config file at any time — no re-scaffolding needed.
+
 ## Enricher API
 
 The generated file uses this signature:

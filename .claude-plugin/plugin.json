@@ -1,6 +1,6 @@
 {
   "name": "context-runes",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Injects dynamic project context into prompts via custom $key(args) tokens using a UserPromptSubmit hook.",
   "author": {
     "name": "DarkRymit"

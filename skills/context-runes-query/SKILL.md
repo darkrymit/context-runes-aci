@@ -18,3 +18,12 @@ crunes query <key> [arg1 arg2 ...]
 - `crunes query api v2` — pass `v2` as an argument to the `api` enricher
 
 In Claude Code, `$key(args)` tokens in prompts are resolved automatically by the `UserPromptSubmit` hook. Use this skill only when the user explicitly asks to inspect enricher output mid-conversation.
+
+## Plain Output
+
+Pass `--plain` / `-p` to suppress ANSI colors in error/info messages — useful when capturing output in AI context:
+
+```bash
+crunes -p query docs
+crunes -p query api --format json
+```
