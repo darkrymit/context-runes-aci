@@ -22,47 +22,68 @@ function main(raw) {
     // stdin not JSON or empty — no tokens to parse
   }
 
-  const xmlBlocks = [];
-
-  // Matches $key or $key(arg1, arg2)
-  const tokenRegex = /\$([\w-]+)(?:\(([^)]*)\))?/g;
+  // Matches $key[=args][::sections] where key may contain : for plugin runes
+  // Key: word chars, @, -, with single-colon joins (not double-colon)
+  const tokenRegex = /\$([\w@-]+(?::(?!:)[\w@-]+)*)(?:=([^:$\s]*))?(?:::([^$\s]*))?/g;
+  const tokens = [];
   let match;
 
   while ((match = tokenRegex.exec(prompt)) !== null) {
     const key = match[1];
     const rawArgs = match[2] || '';
-    const args = rawArgs.split(',').map(a => a.trim()).filter(Boolean);
+    const rawSections = match[3] || '';
+    tokens.push({ key, rawArgs, rawSections });
+  }
 
-    const result = spawnSync('crunes', ['query', key, ...args, '--format', 'json'], {
-      encoding: 'utf8',
-      cwd: process.cwd(),
-      shell: true,
-    });
+  if (tokens.length === 0) {
+    emit('');
+    return;
+  }
 
-    if (result.error || result.status !== 0) {
-      process.stderr.write(
-        `[context-runes] Rune "${key}" failed: ${result.stderr || (result.error && result.error.message) || 'unknown error'}\n`
-      );
-      continue;
-    }
+  // Reconstruct token strings for the CLI (CLI handles section filtering)
+  const keyTokens = tokens.map(({ key, rawArgs, rawSections }) => {
+    let token = key;
+    if (rawArgs) token += '=' + rawArgs;
+    if (rawSections) token += '::' + rawSections;
+    return token;
+  });
 
-    let sections;
-    try {
-      sections = JSON.parse(result.stdout);
-    } catch (err) {
-      process.stderr.write(`[context-runes] Rune "${key}" returned invalid JSON: ${err.message}\n`);
-      continue;
-    }
+  const [primary, ...rest] = keyTokens;
+  const andArgs = rest.flatMap(t => ['-a', t]);
 
-    if (!Array.isArray(sections)) {
-      process.stderr.write(`[context-runes] Rune "${key}" returned unexpected JSON shape\n`);
-      continue;
-    }
+  const result = spawnSync('crunes', ['use', primary, ...andArgs, '--format', 'json'], {
+    encoding: 'utf8',
+    cwd: process.cwd(),
+    shell: true,
+  });
 
-    for (const section of sections) {
-      const block = renderSectionToXml(section);
-      if (block) xmlBlocks.push(block);
-    }
+  if (result.error || result.status !== 0) {
+    process.stderr.write(
+      `[context-runes] Query failed: ${result.stderr || (result.error && result.error.message) || 'unknown error'}\n`
+    );
+    emit('');
+    return;
+  }
+
+  let allSections;
+  try {
+    allSections = JSON.parse(result.stdout);
+  } catch (err) {
+    process.stderr.write(`[context-runes] Query returned invalid JSON: ${err.message}\n`);
+    emit('');
+    return;
+  }
+
+  if (!Array.isArray(allSections)) {
+    process.stderr.write(`[context-runes] Query returned unexpected JSON shape\n`);
+    emit('');
+    return;
+  }
+
+  const xmlBlocks = [];
+  for (const section of allSections) {
+    const block = renderSectionToXml(section);
+    if (block) xmlBlocks.push(block);
   }
 
   emit(xmlBlocks.join('\n\n'));

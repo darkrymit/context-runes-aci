@@ -58,10 +58,11 @@ You can add or edit `name` and `description` directly in the config file at any 
 The generated file uses this signature:
 
 ```js
-export function generate(dir, args, utils) {
-  // dir   — absolute path to the project root
-  // args  — string[] passed from $key(arg1, arg2)
-  // utils — { md, tree, section } helpers
+export function generate(dir, args, utils, opts) {
+  // dir          — absolute path to the project root
+  // args         — string[] passed from $key=arg1,arg2
+  // utils        — { md, tree, section } helpers
+  // opts.sections — string[]|null — requested section names (null = all); use as a performance hint
 }
 ```
 
