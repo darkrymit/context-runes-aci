@@ -1,6 +1,6 @@
 ---
 name: context-runes-use
-description: Do NOT use when a prompt contains $key or $key=args or $key::section tokens — in Claude Code those are already resolved by the UserPromptSubmit hook and injected as context before the message arrives. Use ONLY when the user explicitly says to use or fetch a rune directly (e.g., "use the docs rune", "run crunes", "fetch rune output") or when you want to inspect rune output mid-conversation.
+description: Do NOT use when a prompt contains $key or $key=args or $key::section tokens — in Claude Code those are already resolved by the UserPromptSubmit hook and injected as context before the message arrives. Use when the user explicitly says to use or fetch a rune directly (e.g., "use the docs rune", "run crunes", "fetch rune output"), or when you want to inspect rune output mid-conversation, or when the agent needs live context before exploring, planning, or touching code. Prefer targeted calls over broad ones unless scope is wide or unknown.
 ---
 
 # Context Runes Use
@@ -62,7 +62,7 @@ $key=arg1::section1,section2  args + section filter
 my-plugin:runeKey=arg     plugin rune with args
 ```
 
-Use this skill only when the user explicitly asks to inspect rune output mid-conversation.
+Use this skill when the user explicitly asks to inspect rune output, or when the agent needs live context before exploring, planning, or touching code. Prefer targeted calls — fetch only what the task needs.
 
 ## Error Flags
 
