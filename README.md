@@ -19,7 +19,7 @@ crunes --version
 
 ```bash
 /plugin marketplace add https://github.com/darkrymit/context-runes-aci
-/plugin install context-runes-aci
+/plugin install context-runes
 ```
 
 Run `/reload-plugins` to activate in the current session.
