@@ -33,10 +33,10 @@ Copy or reference the skills from the `skills/` directory. As long as your tool 
 With the plugin active, use the included skills to interact with runes:
 
 - **context-runes-list** — discover what runes are available in the current project
-- **context-runes-query** — fetch rune output mid-conversation
+- **context-runes-use** — fetch rune output mid-conversation
 - **context-runes-create** — scaffold a new rune
 
-Additionally, the `UserPromptSubmit` hook automatically resolves `$key(args)` tokens and injects rune output as XML context before Claude sees your prompt:
+Additionally, the `UserPromptSubmit` hook automatically resolves `$key[=args]` tokens and injects rune output as XML context before Claude sees your prompt:
 
 ```xml
 <context title="Setup Guide" id="setup">
@@ -62,8 +62,8 @@ See [context-runes-cli](https://github.com/darkrymit/context-runes-cli) for the 
 ```
 UserPromptSubmit
   → hook-wrapper.js reads stdin JSON { prompt: "..." }
-  → parses $key(args) tokens
-  → for each token: spawnSync('crunes', ['query', key, ...args, '--format', 'json'])
+  → parses `$key[=args][::sections]` tokens
+  → runs `crunes use <keys...> --format json`
   → iterates Section[] JSON output
   → builds <name title="..." ...>content</name> XML per section
   → emits { hookSpecificOutput: { additionalContext: "..." } }
