@@ -1,6 +1,6 @@
-# context-runes-aci
+# crunes-aci
 
-ACI (Agentic Coder Interface) integrations for [context-runes](https://github.com/darkrymit/context-runes). Connects the [context-runes-cli](https://github.com/darkrymit/context-runes-cli) to AI coding tools, providing skills for manual rune access and — where native hook systems are available — automatic context injection.
+ACI (Agentic Coder Interface) integrations for [crunes](https://github.com/darkrymit/context-runes). Connects the [crunes-cli](https://github.com/darkrymit/context-runes-cli) to AI coding tools, providing skills for manual rune access and — where native hook systems are available — automatic context injection.
 
 Currently supported: **Claude Code** (full native integration via `UserPromptSubmit` hook + skills). Other AI tools with skill or prompt-injection support may use the included skills directly against the CLI.
 
@@ -9,7 +9,7 @@ Currently supported: **Claude Code** (full native integration via `UserPromptSub
 All rune logic is delegated to the CLI. Install it first:
 
 ```bash
-npm install -g @darkrymit/context-runes
+npm install -g @darkrymit/crunes
 crunes --version
 ```
 
@@ -19,7 +19,7 @@ crunes --version
 
 ```bash
 /plugin marketplace add https://github.com/darkrymit/context-runes-aci
-/plugin install context-runes
+/plugin install crunes
 ```
 
 Run `/reload-plugins` to activate in the current session.
@@ -32,9 +32,9 @@ Copy or reference the skills from the `skills/` directory. As long as your tool 
 
 With the plugin active, use the included skills to interact with runes:
 
-- **context-runes-list** — discover what runes are available in the current project
-- **context-runes-use** — fetch rune output mid-conversation
-- **context-runes-create** — scaffold a new rune
+- **crunes-list** — discover what runes are available in the current project
+- **crunes-use** — fetch rune output mid-conversation
+- **crunes-create** — scaffold a new rune
 
 Additionally, the `UserPromptSubmit` hook automatically resolves `$key[=args]` tokens and injects rune output as XML context before Claude sees your prompt:
 
@@ -48,14 +48,14 @@ Additionally, the `UserPromptSubmit` hook automatically resolves `$key[=args]` t
 
 ## Project Setup
 
-Runes live in your project, not in this repo. In each project you want to use context-runes:
+Runes live in your project, not in this repo. In each project you want to use crunes:
 
 ```bash
 crunes init
 crunes create docs --format markdown
 ```
 
-See [context-runes-cli](https://github.com/darkrymit/context-runes-cli) for the full rune authoring guide.
+See [crunes-cli](https://github.com/darkrymit/context-runes-cli) for the full rune authoring guide.
 
 ## How It Works (Claude Code)
 

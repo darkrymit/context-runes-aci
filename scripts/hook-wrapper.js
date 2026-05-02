@@ -8,7 +8,7 @@ process.stdin.on('end', () => {
   try {
     main(stdinData);
   } catch (err) {
-    process.stderr.write(`[context-runes] Fatal: ${err.message}\n`);
+    process.stderr.write(`[crunes] Fatal: ${err.message}\n`);
     emit('');
   }
 });

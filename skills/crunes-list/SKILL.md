@@ -1,6 +1,6 @@
 ---
-name: context-runes-list
-description: Use this skill when the user asks what context-runes runes are available in the current project (e.g., "what runes do I have?", "list available runes", "what context is defined?").
+name: crunes-list
+description: Use this skill when the user asks what crunes runes are available in the current project (e.g., "what runes do I have?", "list available runes", "what context is defined?").
 ---
 
 # Context Runes List
@@ -11,7 +11,7 @@ To discover all runes registered in the current project:
 crunes list
 ```
 
-This reads `.context-runes/config.json` and prints all registered rune keys with their name, description, and file path.
+This reads `.crunes/config.json` and prints all registered rune keys with their name, description, and file path.
 
 If the project has no config yet, run `crunes init` to create one.
 
@@ -22,9 +22,9 @@ Each rune entry can be a plain path string or an object with optional metadata:
 ```json
 {
   "runes": {
-    "docs": ".context-runes/runes/docs.js",
+    "docs": ".crunes/runes/docs.js",
     "api": {
-      "path": ".context-runes/runes/api.js",
+      "path": ".crunes/runes/api.js",
       "name": "API Overview",
       "description": "Summarises public API endpoints and their signatures"
     }

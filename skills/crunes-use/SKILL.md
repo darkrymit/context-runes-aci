@@ -1,5 +1,5 @@
 ---
-name: context-runes-use
+name: crunes-use
 description: Do NOT use when a prompt contains $key or $key=args or $key::section tokens — in Claude Code those are already resolved by the UserPromptSubmit hook and injected as context before the message arrives. Use when the user explicitly says to use or fetch a rune directly (e.g., "use the docs rune", "run crunes", "fetch rune output"), or when you want to inspect rune output mid-conversation, or when the agent needs live context before exploring, planning, or touching code. Prefer targeted calls over broad ones unless scope is wide or unknown.
 ---
 

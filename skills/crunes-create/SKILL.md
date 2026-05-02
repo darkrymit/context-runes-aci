@@ -1,5 +1,5 @@
 ---
-name: context-runes-create
+name: crunes-create
 description: Use this skill when the user wants to add a new rune to their project (e.g., "create a context rune for docs", "add a new rune", "scaffold a rune for the API").
 ---
 
@@ -11,7 +11,7 @@ To scaffold a new rune and register it in one step:
 crunes create <key> --format markdown   # or --format tree
 ```
 
-This creates `.context-runes/runes/<key>.js` and registers it in `.context-runes/config.json`.
+This creates `.crunes/runes/<key>.js` and registers it in `.crunes/config.json`.
 
 Optionally, attach human-readable metadata so it appears in `crunes list`:
 
@@ -37,13 +37,13 @@ crunes -y -p create docs --format markdown
 
 ## Config Entry Format
 
-The rune is registered in `.context-runes/config.json`. A plain path string is valid, but an object allows metadata:
+The rune is registered in `.crunes/config.json`. A plain path string is valid, but an object allows metadata:
 
 ```json
 {
   "runes": {
     "api": {
-      "path": ".context-runes/runes/api.js",
+      "path": ".crunes/runes/api.js",
       "name": "API Overview",
       "description": "Summarises public API endpoints and their signatures"
     }

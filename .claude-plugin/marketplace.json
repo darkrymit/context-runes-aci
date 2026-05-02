@@ -1,14 +1,14 @@
 {
-  "name": "context-runes",
+  "name": "crunes",
   "description": "A Claude Code plugin that injects dynamic project context into prompts.",
   "owner": {
     "name": "DarkRymit"
   },
   "plugins": [
     {
-      "name": "context-runes",
+      "name": "crunes",
       "description": "Injects dynamic project context into prompts via custom $key(args) tokens using a UserPromptSubmit hook.",
-      "version": "1.3.2",
+      "version": "0.3.2",
       "author": {
         "name": "DarkRymit"
       },
