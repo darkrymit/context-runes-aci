@@ -1,12 +1,12 @@
 {
-  "name": "crunes",
+  "name": "crunes-aci",
   "description": "A Claude Code plugin that injects dynamic project context into prompts.",
   "owner": {
     "name": "DarkRymit"
   },
   "plugins": [
     {
-      "name": "crunes",
+      "name": "crunes-aci",
       "description": "Injects dynamic project context into prompts via custom $key(args) tokens using a UserPromptSubmit hook.",
       "version": "0.3.2",
       "author": {

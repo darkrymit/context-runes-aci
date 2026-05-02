@@ -1,5 +1,5 @@
 {
-  "name": "crunes",
+  "name": "crunes-aci",
   "version": "0.3.2",
   "description": "Injects dynamic project context into prompts via custom $key(args) tokens using a UserPromptSubmit hook.",
   "author": {
