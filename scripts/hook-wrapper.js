@@ -59,7 +59,7 @@ function main(raw) {
 
   if (result.error || result.status !== 0) {
     process.stderr.write(
-      `[context-runes] Query failed: ${result.stderr || (result.error && result.error.message) || 'unknown error'}\n`
+      `[crunes] Query failed: ${result.stderr || (result.error && result.error.message) || 'unknown error'}\n`
     );
     emit('');
     return;
@@ -69,13 +69,13 @@ function main(raw) {
   try {
     allSections = JSON.parse(result.stdout);
   } catch (err) {
-    process.stderr.write(`[context-runes] Query returned invalid JSON: ${err.message}\n`);
+    process.stderr.write(`[crunes] Query returned invalid JSON: ${err.message}\n`);
     emit('');
     return;
   }
 
   if (!Array.isArray(allSections)) {
-    process.stderr.write(`[context-runes] Query returned unexpected JSON shape\n`);
+    process.stderr.write(`[crunes] Query returned unexpected JSON shape\n`);
     emit('');
     return;
   }
