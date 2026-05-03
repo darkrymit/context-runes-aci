@@ -18,8 +18,8 @@ crunes --version
 ### Claude Code
 
 ```bash
-/plugin marketplace add https://github.com/darkrymit/context-runes-aci
-/plugin install crunes
+/plugin marketplace add https://github.com/darkrymit/crunes-aci
+/plugin install crunes-aci
 ```
 
 Run `/reload-plugins` to activate in the current session.
