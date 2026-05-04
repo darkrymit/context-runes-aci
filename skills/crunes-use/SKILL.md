@@ -55,11 +55,14 @@ crunes -p use docs               # plain output (no ANSI)
 In prompts, tokens are resolved automatically by the `UserPromptSubmit` hook:
 
 ```
-$key                      all sections
-$key=arg1,arg2            with args
-$key::section             section filter
+$key                          all sections
+$key=arg1,arg2                with args
+$key::section                 exact section match
+$key::prefix-*                glob — all sections starting with prefix-
+$key::*                       all sections (same as omitting the filter)
+$key::prefix-*,errors         glob + exact combined
 $key=arg1::section1,section2  args + section filter
-my-plugin:runeKey=arg     plugin rune with args
+my-plugin:runeKey=arg         plugin rune with args
 ```
 
 Use this skill when the user explicitly asks to inspect rune output, or when the agent needs live context before exploring, planning, or touching code. Prefer targeted calls — fetch only what the task needs.
