@@ -9,7 +9,7 @@ Currently supported: **Claude Code** (full native integration via `UserPromptSub
 All rune logic is delegated to the CLI. Install it first:
 
 ```bash
-npm install -g @darkrymit/crunes
+npm install -g @darkrymit/crunes-cli
 crunes --version
 ```
 
